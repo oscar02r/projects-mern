@@ -8,7 +8,7 @@ const ListadoProjecto = () => {
     const { proyectos, obtenerProyectos } = proyectoContext;
     useEffect(() => {
         obtenerProyectos();
-
+       // eslint-disable-next-line 
     }, []);
 
     if(proyectos.length === 0) return null;
