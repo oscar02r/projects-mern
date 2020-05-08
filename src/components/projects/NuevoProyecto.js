@@ -4,7 +4,7 @@ import proyectoContext from '../../context/projectos/projectoContext';
 const NuevoProyecto = () => {
 
     const proyectosContext = useContext(proyectoContext);
-    const { formulario, mostrarFormulario, agregarProyecto } = proyectosContext;
+    const { formulario, errorformulario, mostrarFormulario, agregarProyecto, mostrarError } = proyectosContext;
 
     const [proyecto, guardarProyecto] = useState({
         nombre:''
@@ -21,9 +21,10 @@ const NuevoProyecto = () => {
           e.preventDefault();
           
           if(nombre.trim() === ''){
+            mostrarError();
             return;
           }
-
+          
           agregarProyecto(proyecto);
           guardarProyecto({
             nombre:''
@@ -66,6 +67,11 @@ const NuevoProyecto = () => {
                )
                :
                null
+          }
+
+          {
+            errorformulario ?
+            <p className="mensaje error">El nombre del Proyecto es obligatorio</p> : null
           }
         </>
      );

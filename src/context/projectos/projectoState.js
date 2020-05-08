@@ -7,7 +7,8 @@ import proyectoReducer from './proyectoReducer';
 import { 
   FORMULARIO_PROYECTO, 
   OBTENER_PROYECTOS,
-  AGREGAR_PROYECTO
+  AGREGAR_PROYECTO,
+  VALIDAR_FORMULARIO
  } from '../../types';
 
  
@@ -20,8 +21,9 @@ const ProyectoState = ({children}) => {
     { id:4, nombre: 'MERN' }
   ];
     const initialState = {
-           proyectos: [],
-           formulario: false 
+           proyectos       : [],
+           formulario      : false,
+           errorformulario : false 
     };
 
     //Dispath para ejecutar las accines
@@ -48,16 +50,23 @@ const ProyectoState = ({children}) => {
            payload : proyecto
          });
     }
+
+    const mostrarError = () => {
+          dispatch({
+              type : VALIDAR_FORMULARIO,
+          });
+    }
  
     return(
         <proyectoContext.Provider
           value={{
-             proyectos  : state.proyectos,
-             formulario : state.formulario,
+             proyectos       : state.proyectos,
+             formulario      : state.formulario,
+             errorformulario : state.errorformulario,
              mostrarFormulario,
              obtenerProyectos,
-             agregarProyecto
-             
+             agregarProyecto,
+             mostrarError
           }}
         >
              {children}

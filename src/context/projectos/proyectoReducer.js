@@ -1,6 +1,7 @@
 import { FORMULARIO_PROYECTO, 
          OBTENER_PROYECTOS,
-         AGREGAR_PROYECTO
+         AGREGAR_PROYECTO,
+         VALIDAR_FORMULARIO
 } from '../../types';
 
 
@@ -11,26 +12,33 @@ export default (state, action) => {
             
           return {
               ...state,
-              formulario: true
+              formulario : true
           }
 
-          case OBTENER_PROYECTOS :
+          case OBTENER_PROYECTOS:
             
           return {
               ...state,
-                proyectos:action.payload
+                proyectos : action.payload
               
           }
-          case AGREGAR_PROYECTO :
+          case AGREGAR_PROYECTO:
             
           return {
               ...state,
-                proyectos:[
+                proyectos : [
                     ...state.proyectos,
                     action.payload
                 ],
-               formulario: false
+               formulario : false,
+               errorformulario: false
           }
+
+          case VALIDAR_FORMULARIO:
+              return {
+                  ...state,
+                  errorformulario : true
+              }
     
         default:
             return state;
