@@ -4,7 +4,7 @@ import proyectoContext from '../../context/projectos/projectoContext';
 const NuevoProyecto = () => {
 
     const proyectosContext = useContext(proyectoContext);
-    const { formulario, mostrarFormulario } = proyectosContext;
+    const { formulario, mostrarFormulario, agregarProyecto } = proyectosContext;
 
     const [proyecto, guardarProyecto] = useState({
         nombre:''
@@ -19,7 +19,15 @@ const NuevoProyecto = () => {
 
     const onSubmitProyecto = e => {
           e.preventDefault();
+          
+          if(nombre.trim() === ''){
+            return;
+          }
 
+          agregarProyecto(proyecto);
+          guardarProyecto({
+            nombre:''
+          });
     }
 
     const onClickNuevoProyecto = () => {
@@ -49,6 +57,7 @@ const NuevoProyecto = () => {
                      value={nombre}
                    />
                    <input 
+                    // onClick={}
                      type="submit" 
                      className="btn btn-primario btn-block"
                      value="Agregar Proyecto"
