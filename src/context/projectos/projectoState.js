@@ -8,7 +8,8 @@ import {
   FORMULARIO_PROYECTO, 
   OBTENER_PROYECTOS,
   AGREGAR_PROYECTO,
-  VALIDAR_FORMULARIO
+  VALIDAR_FORMULARIO,
+  PROYECTO_ACTUAL
  } from '../../types';
 
  
@@ -23,7 +24,8 @@ const ProyectoState = ({children}) => {
     const initialState = {
            proyectos       : [],
            formulario      : false,
-           errorformulario : false 
+           errorformulario : false ,
+           proyecto        : null
     };
 
     //Dispath para ejecutar las accines
@@ -56,6 +58,13 @@ const ProyectoState = ({children}) => {
               type : VALIDAR_FORMULARIO,
           });
     }
+
+    const proyectoActual = proyectoid => {
+      dispatch({
+          type:PROYECTO_ACTUAL,
+          payload: proyectoid
+      });
+    }
  
     return(
         <proyectoContext.Provider
@@ -63,10 +72,12 @@ const ProyectoState = ({children}) => {
              proyectos       : state.proyectos,
              formulario      : state.formulario,
              errorformulario : state.errorformulario,
+             proyecto        : state.proyecto,
              mostrarFormulario,
              obtenerProyectos,
              agregarProyecto,
-             mostrarError
+             mostrarError,
+             proyectoActual
           }}
         >
              {children}
