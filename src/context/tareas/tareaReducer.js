@@ -20,7 +20,7 @@ export default (state, action) => {
     case AGREGAR_TAREA:
       return {
           ...state,
-          tareas : [...state.tareas, action.payload],
+          tareas : [action.payload, ...state.tareas],
           errortarea: false
       };
 
@@ -32,7 +32,7 @@ export default (state, action) => {
     case ELIMINAR_TAREA:
       return {
         ...state,
-        tareas: state.tareas.filter( tarea => tarea !== action.payload)
+        tareas: state.tareas.filter( tarea => tarea.id !== action.payload)
       }
 
     default:

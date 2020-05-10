@@ -14,17 +14,17 @@ import {
             
       const initialState = {
              tareas: [
-                { nombre: 'Eligir Plataforma', estado:true, proyectoId: 1 },
-                { nombre: 'Eligir Colores', estado:false, proyectoId: 1 },
-                { nombre: 'Eligir Plataformas de pago', estado:false, proyectoId: 1 },
-                { nombre: 'Eligir Hosting', estado:true, proyectoId: 2 },
-                { nombre: 'Eligir Colores', estado:false, proyectoId: 2 },
-                { nombre: 'Eligir Plataformas de pago', estado:false, proyectoId: 2 },
-                { nombre: 'Eligir Hosting', estado:true, proyectoId: 3 },
-                { nombre: 'Eligir Colores', estado:false, proyectoId: 3 },
-                { nombre: 'Eligir Plataformas de pago', estado:false, proyectoId: 3 },
-                { nombre: 'Eligir Hosting', estado:true, proyectoId: 4 },
-                { nombre: 'Eligir Plataformas de pago', estado:false, proyectoId: 4 },
+                { id:1, nombre: 'Eligir Plataforma', estado:true, proyectoId: 1 },
+                {id:2, nombre: 'Eligir Colores', estado:false, proyectoId: 1 },
+                {id:3, nombre: 'Eligir Plataformas de pago', estado:false, proyectoId: 1 },
+                {id:4, nombre: 'Eligir Hosting', estado:true, proyectoId: 2 },
+                {id:5, nombre: 'Eligir Colores', estado:false, proyectoId: 2 },
+                {id:6, nombre: 'Eligir Plataformas de pago', estado:false, proyectoId: 2 },
+                {id:7, nombre: 'Eligir Hosting', estado:true, proyectoId: 3 },
+                {id:8, nombre: 'Eligir Colores', estado:false, proyectoId: 3 },
+                {id:9, nombre: 'Eligir Plataformas de pago', estado:false, proyectoId: 3 },
+                {id:10, nombre: 'Eligir Hosting', estado:true, proyectoId: 4 },
+                {id:11, nombre: 'Eligir Plataformas de pago', estado:false, proyectoId: 4 },
              ],
              tareasproyecto: null,
              errortarea: false
