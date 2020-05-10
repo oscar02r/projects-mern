@@ -32,9 +32,9 @@ const ListadoTarea = () => {
                       {
                        tareasproyecto.map( tarea =>(
                          <CSSTransition
-                             key={tarea.id}
                              timeout={200}
                              classNames="tarea"
+                             key={tarea.id}
                          >
                          <Tarea
                              tarea={tarea}
