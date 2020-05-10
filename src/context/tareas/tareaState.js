@@ -6,7 +6,9 @@ import {
       TAREAS_PROYECTO,
       AGREGAR_TAREA,
       VALIDAR_TAREA,
-      ELIMINAR_TAREA
+      ELIMINAR_TAREA,
+      ESTADO_TAREA,
+      TAREA_ACTUAL
 } from '../../types';
 
 
@@ -26,8 +28,9 @@ import {
                 {id:10, nombre: 'Eligir Hosting', estado:true, proyectoId: 4 },
                 {id:11, nombre: 'Eligir Plataformas de pago', estado:false, proyectoId: 4 },
              ],
-             tareasproyecto: null,
-             errortarea: false
+             tareasproyecto    : null,
+             errortarea        : false,
+             tareaseleccionada : null
       }
 
       const [state, dispatch] = useReducer( tareaReducer, initialState);
@@ -60,16 +63,32 @@ import {
            });  
       }
 
+      const cambiarEstadoTarea = tarea => {
+            dispatch({
+                  type    : ESTADO_TAREA,
+                  payload : tarea
+            });
+      }
+
+      const guardarTareaActual = tarea => {
+            dispatch({
+                  type: TAREA_ACTUAL,
+                  payload: tarea
+            });
+      }
        return(
            <TareaContext.Provider
              value={{
-                   tareas: state.tareas,
-                   tareasproyecto: state.tareasproyecto,
-                   errortarea: state.errortarea,
+                   tareas            : state.tareas,
+                   tareasproyecto    : state.tareasproyecto,
+                   errortarea        : state.errortarea,
+                   tareaseleccionada : state.tareaseleccionada,
                    obtenerTareas,
                    agregarTarea,
                    validarTarea,
-                   eliminarTarea
+                   eliminarTarea,
+                   cambiarEstadoTarea ,
+                   guardarTareaActual
              }}
            >
              {children}
