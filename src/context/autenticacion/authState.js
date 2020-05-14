@@ -104,7 +104,8 @@ import tokenAuth from '../../config/token';
                 usuario: state.usuario,
                 mensaje: state.mensaje,
                 registrarUsuario,
-                iniciarSesion
+                iniciarSesion,
+                usuarioAutenticado
           }}
         >
           {children}
