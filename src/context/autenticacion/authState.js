@@ -2,8 +2,6 @@ import React, { useReducer} from 'react';
 import clienteAxios from '../../config/axios';
 import {AuthContext} from './authContext';
 import authReducer from './authReducer';
-import authToken from '../../config/token';
-
 import { 
     REGISTRO_EXITOSO,
     REGISTRO_ERROR,
@@ -54,7 +52,7 @@ import tokenAuth from '../../config/token';
 
               const token = localStorage.getItem('token');
               if (token) {
-                 tokenAuth(token);
+                tokenAuth(token);
               }
               
               try {
@@ -72,6 +70,32 @@ import tokenAuth from '../../config/token';
 
         }
 
+        const iniciarSesion = async datos => {
+
+          try {
+            const respuesta = await clienteAxios.post('/api/auth',datos);
+            console.log(respuesta);
+            dispatch({
+              type: LOGIN_EXITOSO,
+              payload: respuesta.data
+            }); 
+            usuarioAutenticado();
+        } catch (error) {
+
+             console.log(error.response.data);
+
+             const alerta ={
+              msg:error.response.data.msg,
+              categoria: 'alerta-error'
+             };
+
+             dispatch({
+               type: LOGIN_ERROR,
+               payload: alerta
+             });
+        }
+        }
+
         return (
         <AuthContext.Provider
           value={{
@@ -79,7 +103,8 @@ import tokenAuth from '../../config/token';
                 autenticado: state.autenticado,
                 usuario: state.usuario,
                 mensaje: state.mensaje,
-                registrarUsuario
+                registrarUsuario,
+                iniciarSesion
           }}
         >
           {children}
