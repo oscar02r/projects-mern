@@ -1,11 +1,26 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { AlertaContext } from '../../context/alertas/alertaContext';
+import { AuthContext   } from '../../context/autenticacion/authContext';
 
-const NuevaCuenta = () => {
+const NuevaCuenta = (props) => {
 
   const alertaContext = useContext(AlertaContext);
   const { alerta, mostrarAlerta } = alertaContext;
+
+  const authContext = useContext(AuthContext);
+  const { mensaje, autenticado, registrarUsuario } = authContext;
+  
+  useEffect(()=>{
+      if(autenticado) {
+         props.history.push('/proyectos');  
+      }
+
+      if (mensaje) {
+        mostrarAlerta(mensaje.msg, mensaje.categoria);
+      }
+
+  }, [mensaje, autenticado, props.history]);
 
   const [usuario, guardarUsuario] = useState({
         nombre: '',
@@ -23,6 +38,8 @@ const NuevaCuenta = () => {
       });
   };
 
+  const {email, password, confirmar, nombre} = usuario;
+
   const onSubmit = e => {
     e.preventDefault();
 
@@ -38,6 +55,12 @@ const NuevaCuenta = () => {
     if (password !== confirmar) {
       return mostrarAlerta('Los dos password deben ser iguales.', 'alerta-error');
     }
+    
+    registrarUsuario({
+      nombre,
+      email,
+      password
+    });
 
     guardarUsuario({
       nombre: '',
@@ -47,9 +70,7 @@ const NuevaCuenta = () => {
     });
 
   }
-  
-  const {email, password, confirmar, nombre} = usuario; 
-
+   
   return (
     <div className="form-usuario">
        {alerta ? <div className={`alerta ${alerta.categoria}`}>{alerta.msg}</div>: null}
