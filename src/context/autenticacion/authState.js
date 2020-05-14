@@ -17,6 +17,7 @@ import tokenAuth from '../../config/token';
         const initialState = {
               token: localStorage.getItem('token'),
               autenticado: null,
+              cargando:true,
               usuario: null,
               mensaje: null
         };
@@ -95,17 +96,26 @@ import tokenAuth from '../../config/token';
              });
         }
         }
+        
+        const cerrarSession = () => {
+               dispatch({
+                 type: CERRAR_SESSION,
+
+               });
+        }
 
         return (
         <AuthContext.Provider
           value={{
                 token: state.token,
                 autenticado: state.autenticado,
+                cargando: state.cargando,
                 usuario: state.usuario,
                 mensaje: state.mensaje,
                 registrarUsuario,
                 iniciarSesion,
-                usuarioAutenticado
+                usuarioAutenticado,
+                cerrarSession
           }}
         >
           {children}
