@@ -7,6 +7,7 @@ const ListadoProjecto = () => {
    
     const proyectoContext = useContext(ProyectoContext);
     const { proyectos, obtenerProyectos } = proyectoContext;
+    
     useEffect(() => {
         obtenerProyectos();
        // eslint-disable-next-line 
