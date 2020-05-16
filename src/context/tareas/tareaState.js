@@ -61,11 +61,16 @@ import clienteAxios from '../../config/axios';
             });
       }
 
-      const eliminarTarea = id => {
-           dispatch({
-                 type: ELIMINAR_TAREA,
-                 payload: id
-           });  
+      const eliminarTarea = async ( id, proyecto ) => {
+            try {
+                  await clienteAxios.delete(`/api/tareas/${id}`, { params: {proyecto} });
+                  dispatch({
+                        type: ELIMINAR_TAREA,
+                        payload: id
+                  });  
+            } catch (error) {
+                  console.log(error.response.data);
+            }
       }
 
       const cambiarEstadoTarea = tarea => {
@@ -89,15 +94,13 @@ import clienteAxios from '../../config/axios';
             });
       }
 
-      const limpiarTarea = async ( id, proyecto ) => {
-           try {
-                 await clienteAxios.delete(`/api/tareas/${id}`, {params:{proyecto}});
+      const limpiarTarea =  ( ) => {
+          
+                 
                  dispatch({
                        type: LIMPIAR_TAREA
                  });
-           } catch (error) {
-                 console.log(error);
-           }
+           
       }
 
        return(
