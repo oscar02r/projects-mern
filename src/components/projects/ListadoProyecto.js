@@ -1,7 +1,7 @@
 import React, { useContext, useEffect} from 'react';
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
-import Proyecto from './Projecto';
-import ProyectoContext from '../../context/projectos/projectoContext';
+import Proyecto from './Proyecto';
+import ProyectoContext from '../../context/proyectos/proyectoContext';
 import { AlertaContext } from '../../context/alertas/alertaContext';
 
 const ListadoProjecto = () => {
@@ -31,6 +31,7 @@ const ListadoProjecto = () => {
          
               <TransitionGroup>
               {    
+                
                  proyectos.map(proyecto =>(
                    <CSSTransition
                      key={proyecto._id}

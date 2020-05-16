@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./components/auth/Login";
 import NuevaCuenta from "./components/auth/NuevaCuenta";
 import Proyectos from "./components/projects/Proyectos";
-import ProyectoState from "./context/projectos/projectoState";
+import ProyectoState from "./context/proyectos/proyectoState";
 import TareaState from "./context/tareas/tareaState";
 import AlertaState from "./context/alertas/alertaState";
 import AuthState from "./context/autenticacion/authState";

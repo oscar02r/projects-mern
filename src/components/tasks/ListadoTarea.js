@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import Tarea from './Tarea';
-import ProyectoContext from '../../context/projectos/projectoContext';
+import ProyectoContext from '../../context/proyectos/proyectoContext';
 import { TareaContext } from '../../context/tareas/tareaContext';
 
 const ListadoTarea = () => {

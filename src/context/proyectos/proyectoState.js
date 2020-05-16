@@ -1,7 +1,7 @@
 import React, {useReducer} from 'react';
 import clienteAxios from '../../config/axios';
 
-import proyectoContext from './projectoContext';
+import proyectoContext from './proyectoContext';
 import proyectoReducer from './proyectoReducer';
 
 import { 

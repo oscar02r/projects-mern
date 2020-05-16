@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import { TareaContext } from '../../context/tareas/tareaContext';
-import ProyectoContext from '../../context/projectos/projectoContext';
+import ProyectoContext from '../../context/proyectos/proyectoContext';
 
 
 const Tarea = ({tarea}) => {
