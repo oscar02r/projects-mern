@@ -8,6 +8,7 @@ import {
   FORMULARIO_PROYECTO, 
   OBTENER_PROYECTOS,
   AGREGAR_PROYECTO,
+  PROYECTO_ERROR,
   VALIDAR_FORMULARIO,
   PROYECTO_ACTUAL, 
   ELIMINAR_PROYECTO
@@ -20,7 +21,8 @@ const ProyectoState = ({children}) => {
            proyectos       : [],
            formulario      : false,
            errorformulario : false ,
-           proyecto        : null
+           proyecto        : null,
+           mensaje         : null 
     };
 
     //Dispath para ejecutar las accines
@@ -41,10 +43,17 @@ const ProyectoState = ({children}) => {
              type: OBTENER_PROYECTOS,
              payload: respuesta.data.proyectos
           });
-          console.log(respuesta.data);
       } catch (error) {
-        console.log(error                 );
-      }
+        const alerta = {
+            msg:'Hubo un error',
+            categoria:'alerta-error'
+       };
+
+        dispatch({
+            type    : PROYECTO_ERROR,
+            payload : alerta
+        });
+   }
     }
 
     const agregarProyecto = async proyecto => {
@@ -55,9 +64,18 @@ const ProyectoState = ({children}) => {
                type: AGREGAR_PROYECTO,
                payload: resultado.data
             });
+            obtenerProyectos();
         } catch (error) {
-          console.log(error);
-        }
+          const alerta = {
+              msg:'Hubo un error',
+              categoria:'alerta-error'
+         };
+
+          dispatch({
+              type    : PROYECTO_ERROR,
+              payload : alerta
+          });
+     }
     }
 
     const mostrarError = () => {
@@ -66,18 +84,35 @@ const ProyectoState = ({children}) => {
           });
     }
 
-    const proyectoActual = proyectoid => {
+    const proyectoActual = proyecto => {
       dispatch({
           type:PROYECTO_ACTUAL,
-          payload: proyectoid
+          payload: proyecto
       });
     }
 
-    const eliminarProyecto = proyectoId => {
-          dispatch({
-            type    : ELIMINAR_PROYECTO,
-            payload : proyectoId
-          });
+    const eliminarProyecto = async proyectoId => {
+
+          try {
+
+            await clienteAxios.delete(`/api/proyectos/${proyectoId}`);
+            
+            dispatch({
+              type    : ELIMINAR_PROYECTO,
+              payload : proyectoId
+            });
+
+          } catch (error) {
+               const alerta = {
+                   msg:'Hubo un error',
+                   categoria:'alerta-error'
+              };
+
+               dispatch({
+                   type    : PROYECTO_ERROR,
+                   payload : alerta
+               });
+          }
     }
 
     return(
@@ -87,6 +122,7 @@ const ProyectoState = ({children}) => {
              formulario      : state.formulario,
              errorformulario : state.errorformulario,
              proyecto        : state.proyecto,
+             mensaje         : state.mensaje,
              mostrarFormulario,
              obtenerProyectos,
              agregarProyecto,

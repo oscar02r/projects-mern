@@ -34,7 +34,7 @@ const ListadoTarea = () => {
                          <CSSTransition
                              timeout={200}
                              classNames="tarea"
-                             key={tarea.id}
+                             key={tarea._id}
                          >
                          <Tarea
                              tarea={tarea}
@@ -48,7 +48,7 @@ const ListadoTarea = () => {
           <button
             className="btn btn-eliminar"
             type="button"
-            onClick = { () => eliminarProyecto(proyectoActual.id)}
+            onClick = { () => eliminarProyecto(proyectoActual._id)}
           >Eliminar Proyecto &times;</button>
         </>
      );
