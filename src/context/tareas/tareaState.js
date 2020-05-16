@@ -73,24 +73,22 @@ import clienteAxios from '../../config/axios';
             }
       }
 
-      const cambiarEstadoTarea = tarea => {
-            dispatch({
-                  type    : ESTADO_TAREA,
-                  payload : tarea
-            });
+      const actualizarTarea = async tarea => {
+            try {
+                  const respuesta = await clienteAxios.put(`/api/tareas/${tarea._id}`, tarea);
+                  dispatch({
+                        type    : ACTUALIZAR_TAREA,
+                        payload : respuesta.data.tarea
+                  });
+            } catch (error) {
+                  console.log(error);
+            }
       }
 
       const guardarTareaActual = tarea => {
             dispatch({
                   type: TAREA_ACTUAL,
                   payload: tarea
-            });
-      }
-
-      const actualizarTarea = tarea => {
-            dispatch({
-                  type    : ACTUALIZAR_TAREA,
-                  payload : tarea
             });
       }
 
@@ -113,7 +111,6 @@ import clienteAxios from '../../config/axios';
                    agregarTarea,
                    validarTarea,
                    eliminarTarea,
-                   cambiarEstadoTarea ,
                    guardarTareaActual,
                    actualizarTarea,
                    limpiarTarea
