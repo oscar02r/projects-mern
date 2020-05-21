@@ -34,7 +34,7 @@ import tokenAuth from '../../config/token';
                  payload: respuesta.data
                });
                usuarioAutenticado();
-               //console.log(respuesta.data);
+            
           } catch (error) {
           
             const alerta ={
@@ -63,7 +63,6 @@ import tokenAuth from '../../config/token';
                     payload: respuesta.data.usuario
                   });         
               } catch (error) {
-                   console.log(error.response.data.msg);
                    dispatch({
                      type: LOGIN_ERROR
                    });
@@ -75,17 +74,15 @@ import tokenAuth from '../../config/token';
 
           try {
             const respuesta = await clienteAxios.post('/api/auth',datos);
-            console.log(respuesta);
             dispatch({
               type: LOGIN_EXITOSO,
               payload: respuesta.data
             }); 
+
             usuarioAutenticado();
         } catch (error) {
 
-             console.log(error.response.data);
-
-             const alerta ={
+          const alerta ={
               msg:error.response.data.msg,
               categoria: 'alerta-error'
              };

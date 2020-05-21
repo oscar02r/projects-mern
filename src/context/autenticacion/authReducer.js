@@ -9,8 +9,10 @@ import {
 
 export default (state, action) => {
   switch (action.type) {
+
     case REGISTRO_EXITOSO:
     case LOGIN_EXITOSO:
+      
       localStorage.setItem("token", action.payload.token);
       return {
         ...state,
@@ -18,6 +20,7 @@ export default (state, action) => {
         cargando:false,
         mensaje: null,
       };
+
     case OBTENER_USUARIO:
          return{
            ...state,
